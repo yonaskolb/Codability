@@ -1,12 +1,4 @@
-//
-//  KeyedDecodingContainer+Generic.swift
-//  Codability
-//
-//  Created by Yonas Kolb on 25/4/18.
-//
-
 import Foundation
-
 
 extension KeyedDecodingContainer {
 

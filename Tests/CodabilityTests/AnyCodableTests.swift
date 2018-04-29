@@ -31,6 +31,8 @@ final class AnyContainerTests: XCTestCase {
         ]
     ]
 
+    let object = Object(boolean: true, integer: 1, double: 3.2, string: "string", array: [1,2,3])
+
     lazy var anyJson = """
     {
         "dictionary": \(jsonString),
@@ -82,14 +84,27 @@ final class AnyContainerTests: XCTestCase {
         XCTAssertEqual(encodedJSONObject, expectedJSONObject)
     }
 
+    func testObjectCoding() throws {
+
+        let json = jsonString.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        let decodedObject = try! decoder.decode(Object.self, from: json)
+        let encodedObject = try encoder.encode(decodedObject)
+        let decodedEncodedObject = try! decoder.decode(Object.self, from: encodedObject)
+
+        XCTAssertEqual(object, decodedObject)
+        XCTAssertEqual(decodedObject, decodedEncodedObject)
+    }
+
     func testCodingAny() throws {
 
         let json = anyJson.data(using: .utf8)!
 
         let decoder = JSONDecoder()
-        let object = try decoder.decode(Object.self, from: json)
+        let object = try decoder.decode(AnyContainer.self, from: json)
 
-        func assert(_ object: Object) {
+        func assert(_ object: AnyContainer) {
             XCTAssertEqual(object.dictionary["boolean"] as! Bool, true)
             XCTAssertEqual(object.dictionary["integer"] as! Int, 1)
             XCTAssertEqual(object.dictionary["double"] as! Double, 3.2)
@@ -105,7 +120,7 @@ final class AnyContainerTests: XCTestCase {
 
         let encoder = JSONEncoder()
         let data = try encoder.encode(object)
-        let object2 = try decoder.decode(Object.self, from: data)
+        let object2 = try decoder.decode(AnyContainer.self, from: data)
         assert(object2)
     }
 
@@ -115,7 +130,43 @@ final class AnyContainerTests: XCTestCase {
         ]
 }
 
-struct Object: Codable {
+struct Object: Codable, Equatable {
+
+    let boolean: Bool
+    let integer: Int
+    let double: Double
+    let string: String
+    let array: [Int]
+
+    init(boolean: Bool, integer: Int, double: Double, string: String, array: [Int]) {
+        self.boolean = boolean
+        self.integer = integer
+        self.double = double
+        self.string = string
+        self.array = array
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: RawCodingKey.self)
+
+        boolean = try container.decode("boolean")
+        integer = try container.decode("integer")
+        double = try container.decode("double")
+        string = try container.decode("string")
+        array = try container.decode("array")
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: RawCodingKey.self)
+        try container.encode(boolean, forKey: "boolean")
+        try container.encode(integer, forKey: "integer")
+        try container.encode(double, forKey: "double")
+        try container.encode(string, forKey: "string")
+        try container.encode(array, forKey: "array")
+    }
+}
+
+struct AnyContainer: Codable {
 
     let dictionary: [String: Any]
     let array: [Any]
