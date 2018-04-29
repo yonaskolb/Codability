@@ -124,16 +124,16 @@ struct Object: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        dictionary = try container.decode([String: Any].self, forKey: .dictionary)
-        array = try container.decode([Any].self, forKey: .array)
-        value = try container.decode(Any.self, forKey: .value)
+        dictionary = try container.decodeAny([String: Any].self, forKey: .dictionary)
+        array = try container.decodeAny([Any].self, forKey: .array)
+        value = try container.decodeAny(Any.self, forKey: .value)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(dictionary, forKey: .dictionary)
-        try container.encode(array, forKey: .array)
-        try container.encode(value, forKey: .value)
+        try container.encodeAny(dictionary, forKey: .dictionary)
+        try container.encodeAny(array, forKey: .array)
+        try container.encodeAny(value, forKey: .value)
     }
 
     enum CodingKeys: CodingKey {
