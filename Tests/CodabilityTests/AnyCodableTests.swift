@@ -1,4 +1,5 @@
 import XCTest
+import Foundation
 @testable import Codability
 
 final class AnyContainerTests: XCTestCase {
@@ -124,10 +125,25 @@ final class AnyContainerTests: XCTestCase {
         assert(object2)
     }
 
+    func testToDictionary() throws {
+        let json = jsonString.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        let decodedObject = try! decoder.decode(DictionaryObject.self, from: json)
+        XCTAssertTrue((decodedObject.properties as NSDictionary).isEqual(to: jsonValue))
+    }
+
 
     static var allTests = [
         ("testCodingAny", testCodingAny),
         ]
+}
+
+struct DictionaryObject: Decodable {
+    let properties: [String: Any]
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: RawCodingKey.self)
+        properties = try container.toDictionary()
+    }
 }
 
 struct Object: Codable, Equatable {

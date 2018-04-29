@@ -17,4 +17,12 @@ extension KeyedDecodingContainer {
             throw DecodingError.typeMismatch(T.self, DecodingError.Context(codingPath: codingPath, debugDescription: "Decoding of \(T.self) failed"))
         }
     }
+
+    public func toDictionary() throws -> [String: Any] {
+        var dictionary: [String: Any] = [:]
+        for key in allKeys {
+            dictionary[key.stringValue] = try decodeAny(key)
+        }
+        return dictionary
+    }
 }
