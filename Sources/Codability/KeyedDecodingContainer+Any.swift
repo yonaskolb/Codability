@@ -10,12 +10,11 @@ extension KeyedDecodingContainer {
     }
 
     public func decodeAnyIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? {
-        guard let value = try decodeIfPresent(AnyCodable.self, forKey: key)?.value else { return nil }
-        if let typedValue = value as? T {
-            return typedValue
-        } else {
-            throw DecodingError.typeMismatch(T.self, DecodingError.Context(codingPath: codingPath, debugDescription: "Decoding of \(T.self) failed"))
+        if !contains(key) {
+            return nil
         }
+        
+        return try decodeAny(type, forKey: key)
     }
 
     public func toDictionary() throws -> [String: Any] {

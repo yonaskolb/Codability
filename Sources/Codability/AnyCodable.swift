@@ -1,19 +1,13 @@
 import Foundation
 
-// Copied from https://github.com/Flight-School/AnyCodable
+// Based on https://github.com/Flight-School/AnyCodable
 
 /**
  A type-erased `Codable` value.
  
- The `AnyCodable` type forwards encoding and decoding responsibilities
- to an underlying value, hiding its specific underlying type.
- 
- You can encode or decode mixed-type values in dictionaries
+ You can encode or decode mixed-type or unknown values in dictionaries
  and other collections that require `Encodable` or `Decodable` conformance
  by declaring their contained type to be `AnyCodable`.
- 
- - SeeAlso: `AnyEncodable`
- - SeeAlso: `AnyDecodable`
  */
 public struct AnyCodable {
     public let value: Any
