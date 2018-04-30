@@ -7,9 +7,9 @@
 
 Useful helpers for working with `Codable` types in Swift
 
-- [Invalid Element Strategy](#invalidElementStrategy)
-- [Any Codable](#anyCodable)
-- [Raw CodingKey](#rawCodingKey)
+- [Invalid Element Strategy](#invalid-element-strategy)
+- [Any Codable](#any-codable)
+- [Raw CodingKey](#raw-codingkey)
 - [Generic Decoding Functions](#generic-decoding-functions)
 
 ## Installing
@@ -26,7 +26,7 @@ And then import wherever needed: `import Codability`
 
 ## Helpers
 
-### InvalidElementStrategy
+### Invalid Element Strategy
 By default Decodable will throw an error if a single element within an array or dictionary fails. `InvalidElementStrategy` is an enum that lets you control this behaviour. It has multiple cases:
 
 - `remove`: Removes the element from the collection
@@ -75,7 +75,7 @@ decodedObject.array == [1,0,3]
 decodedObject.dictionary = ["one": 1, "three": 3]
 ```
 
-### AnyCodable
+### Any Codable
 The downside of using Codable is that you can't encode and decode properties where the type is mixed or unknown, for example `[String: Any]`, `[Any]` or `Any`. 
 These are sometimes a neccessary evil in many apis, and `AnyCodable` makes supporting these types easy.
 
@@ -126,7 +126,7 @@ struct AnyContainer: Codable {
 }
 ```
 
-### RawCodingKey
+### Raw CodingKey
 `RawCodingKey` can be used to provide dynamic coding keys. It also remove the need to create the standard `CodingKey` enum when you are only using those values in once place.
 
 ```swift
