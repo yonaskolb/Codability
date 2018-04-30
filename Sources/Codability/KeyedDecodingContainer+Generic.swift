@@ -17,4 +17,12 @@ extension KeyedDecodingContainer {
     public func decodeAnyIfPresent<T>(_ key: K) throws -> T? {
         return try decodeAnyIfPresent(T.self, forKey: key)
     }
+
+    public func decodeArray<T: Decodable>(_ key: K, invalidElementStrategy: InvalidElementStrategy<T>? = nil) throws -> [T] {
+        return try decodeArray([T].self, forKey: key, invalidElementStrategy: invalidElementStrategy)
+    }
+
+    public func decodeDictionary<T: Decodable>(_ key: K, invalidElementStrategy: InvalidElementStrategy<T>? = nil) throws -> [String: T] {
+        return try decodeDictionary([String: T].self, forKey: key, invalidElementStrategy: invalidElementStrategy)
+    }
 }
