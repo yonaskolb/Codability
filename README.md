@@ -1,9 +1,9 @@
 # Codability
 
-[![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
-[![Git Version](https://img.shields.io/github/release/yonaskolb/Codability.svg)](https://github.com/yonaskolb/Codability/releases)
-[![Build Status](https://img.shields.io/circleci/project/github/yonaskolb/Codability.svg?style=flat)](https://circleci.com/gh/yonaskolb/Codability)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/yonaskolb/Codability/blob/master/LICENSE)
+[![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=for-the-badge)](https://swift.org/package-manager)
+[![Git Version](https://img.shields.io/github/release/yonaskolb/Codability.svg?style=for-the-badge)](https://github.com/yonaskolb/Codability/releases)
+[![Build Status](https://img.shields.io/circleci/project/github/yonaskolb/Codability.svg?style=for-the-badge)](https://circleci.com/gh/yonaskolb/Codability)
+[![license](https://img.shields.io/github/license/yonaskolb/Codability.svg?style=for-the-badge)](https://github.com/yonaskolb/Codability/blob/master/LICENSE)
 
 Useful helpers for working with `Codable` types in Swift
 
