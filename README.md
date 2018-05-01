@@ -18,7 +18,7 @@ Useful helpers for working with `Codable` types in Swift
 
 Add the following to your `Package.swift` dependencies:
 
-```
+```swift
 .package(url: "https://github.com/yonaskolb/Codability.git", from: "0.2.0"),
 ```
 
