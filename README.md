@@ -168,3 +168,6 @@ struct Object: Decodable {
 }
 
 ```
+
+## Attributions
+Thanks to @mattt and [Flight-School/AnyCodable](https://github.com/Flight-School/AnyCodable) for the basis of `AnyCodable` support. [License](https://github.com/Flight-School/AnyCodable/blob/master/LICENSE.md)
