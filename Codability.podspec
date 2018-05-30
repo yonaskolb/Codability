@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 	s.name         = "Codability"
-	s.version      = "0.2.0"
+	s.version      = "0.2.1"
 	s.swift_version = "4.1"
 	s.summary      = "Useful helpers for working with Codable types in Swift"
 	s.homepage     = "http://github.com/yonaskolb/Codability"
